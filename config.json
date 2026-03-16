@@ -1,6 +1,6 @@
 {
   "bot": {
-    "token": "process.env.DISCORD_TOKEN",
+    "token": "",
     "owner_id": "1246759784649068616",
     "prefix": "h!",
     "default_status": "dnd",
@@ -10,7 +10,7 @@
     "error_color": "ED4245",
     "success_color": "57F287",
     "client_id": "1452460095085744238",
-    "client_secret": "process.env.CLIENT_SECRET"
+    "client_secret": ""
   },
   "database": {
     "type": "sqlite",
