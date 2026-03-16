@@ -510,13 +510,14 @@ def run_web():
     port = int(os.environ.get('PORT', 5000))
     web_app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
 
-# Load config - with environment variable support
+# Load config
 with open('config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
 
-# Override config with environment variables (for deployment)
-if os.environ.get('BOT_TOKEN'):
-    config['bot']['token'] = os.environ.get('BOT_TOKEN')
+# Get token from environment variable (for Render.com)
+BOT_TOKEN = os.environ.get('DISCORD_TOKEN', config['bot']['token'])
+
+# Update config with environment variables
 if os.environ.get('CLIENT_ID'):
     config['bot']['client_id'] = os.environ.get('CLIENT_ID')
 if os.environ.get('CLIENT_SECRET'):
@@ -1013,10 +1014,6 @@ async def load_cogs():
         except Exception as e:
             logger.error(f"{cog} yüklenemedi: {e}")
 
-@bot.command(name='ping')
-async def ping(ctx):
-    await ctx.send(f"🏓 Pong! {round(bot.latency * 1000)}ms")
-
 async def main():
     global web_bot
     web_bot = bot
@@ -1030,7 +1027,7 @@ async def main():
     
     async with bot:
         try:
-            await bot.start(config['bot']['token'])
+            await bot.start(BOT_TOKEN)
         except discord.LoginFailure:
             logger.error("Token gecersiz!")
         except Exception as e:
