@@ -470,13 +470,13 @@ class Fun(commands.Cog):
             embed.add_field(name="Konu", value=channel.topic, inline=False)
         await ctx.send(embed=embed)
     
-    @commands.command(name='pong')
+    @commands.command(name='pang')
     async def ping(self, ctx):
         await ctx.send("🏓 Pong! `calculating...`")
     
     @commands.command(name='pong')
     async def pong(self, ctx):
-        await ctx.send("🏓 Pong! `calculating...`")
+        await ctx.send("🏓 Pang! `calculating...`")
     
     @commands.command(name='bot', aliases=['botbilgi', 'botinfo'])
     async def bot(self, ctx):
